@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Upstox Suite">
+    <listeners>
+    </listeners>
+    <test name="Upstox Historical Data">
+        <classes>
+            <class name="ipo.API_Automation"/>
+        </classes>
+    </test>
+</suite>
