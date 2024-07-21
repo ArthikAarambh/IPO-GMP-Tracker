@@ -5,13 +5,8 @@ import io.cucumber.java.en.Given;
 import io.restassured.response.Response;
 import org.apache.http.MethodNotSupportedException;
 import org.json.JSONObject;
-import org.testng.Assert;
-import org.testng.SkipException;
 import utils.JsonReader;
 import static api.utils.API_Config.*;
-import static utils.TestConfig.*;
-import static utils.TestLogger.*;
-
 public class MasterAPI_Steps  {
     private static boolean IS_DATA_CRC_ENCRYPTED=false;
     @Given("An API template for request {string}")
@@ -19,7 +14,7 @@ public class MasterAPI_Steps  {
     public static void an_api_template_for_request(String apiFileName) {
         API_TEMPLATE_PATH = (apiFileName).replaceAll("\\.json", "") + ".json";
         API_TEMPLATE = JsonReader.getJsonData(API_TEMPLATE_PATH);
-//        API_TEMPLATE.getJSONObject("headers").put("Authorization", BEARER_TOKEN);
+       API_TEMPLATE.getJSONObject("headers").put("Authorization", BEARER_TOKEN);
         updateAPIBodyVariables();
     }
 
@@ -37,7 +32,7 @@ public class MasterAPI_Steps  {
 
         System.out.println(API_TEMPLATE+" harsh");
         try {
-            API_Helper apiHelper = new API_Helper(API_TEMPLATE, TEST_LOG_FILE);
+            API_Helper apiHelper = new API_Helper(API_TEMPLATE);
             apiHelper.readBodyFromAsString(IS_DATA_CRC_ENCRYPTED, REQUEST_BODY_STRING);
 
             RESPONSE = apiHelper.publish();

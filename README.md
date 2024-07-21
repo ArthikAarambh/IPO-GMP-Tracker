@@ -1,4 +1,4 @@
-**pfl_automation**
+**api_automation**
 
 ``mvn -U clean test -DtestSuite=upstox/UpstoxSuite.xml -Dapp=ajio/jioads-campaign-stg.json``
 
