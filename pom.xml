@@ -9,6 +9,8 @@
     <properties>
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
+        <testSuite>upstox/UpstoxSuite.xml</testSuite>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- From here Imported modules -->
         <maven-surefire-plugin-version>3.1.2</maven-surefire-plugin-version>
@@ -27,7 +29,6 @@
         <log4j-core-version>2.20.0</log4j-core-version>
         <allure.version>2.24.0</allure.version>
     </properties>
-
     <dependencies>
         <!-- selenium -->
         <dependency>
@@ -252,4 +253,98 @@
         </dependency>
 
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <defaultGoal>test</defaultGoal>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <source>${maven.compiler.source}</source>
+                            <target>${maven.compiler.target}</target>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven-surefire-plugin-version}</version>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>testSuites/${testSuite}</suiteXmlFile>
+                            </suiteXmlFiles>
+                            <argLine>
+                                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                                -Dcucumber.options="--plugin io.qameta.allure.cucumber7jvm.AllureCucumber5Jvm"
+                            </argLine>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.aspectj</groupId>
+                                <artifactId>aspectjweaver</artifactId>
+                                <version>${aspectj.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-jar-plugin</artifactId>
+                                <version>3.3.0</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-deploy-plugin</artifactId>
+                                <version>3.1.1</version>
+                                <type>maven-plugin</type>
+                            </dependency>
+                            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-site-plugin -->
+                            <dependency>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-site-plugin</artifactId>
+                                <version>3.12.1</version>
+                            </dependency>
+                            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-deploy-plugin -->
+                            <dependency>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-deploy-plugin</artifactId>
+                                <version>3.1.1</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                    <plugin>
+                        <dependencies>
+                            <dependency>
+                                <groupId>net.masterthought</groupId>
+                                <artifactId>cucumber-reporting</artifactId>
+                                <version>5.7.7</version>
+                            </dependency>
+                        </dependencies>
+                        <groupId>net.masterthought</groupId>
+                        <artifactId>maven-cucumber-reporting</artifactId>
+                        <version>2.8.0</version>
+                        <executions>
+                            <execution>
+                                <id>execution</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                                <configuration>
+                                    <projectName>CucumberWebGui</projectName>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                    <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+                                    <skippedFails>true</skippedFails>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>
