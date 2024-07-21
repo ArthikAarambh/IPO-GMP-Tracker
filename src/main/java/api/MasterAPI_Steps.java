@@ -1,7 +1,6 @@
 package api;
 
 import api.utils.API_Helper;
-import io.cucumber.java.en.Given;
 import io.restassured.response.Response;
 import org.apache.http.MethodNotSupportedException;
 import org.json.JSONObject;
@@ -31,8 +30,6 @@ public class MasterAPI_Steps  {
         System.out.println(API_TEMPLATE+" api_template");
         try {
             API_Helper apiHelper = new API_Helper(API_TEMPLATE);
-            apiHelper.readBodyFromAsString(IS_DATA_CRC_ENCRYPTED, REQUEST_BODY_STRING);
-
             RESPONSE = apiHelper.publish();
 
         } catch (MethodNotSupportedException e) {

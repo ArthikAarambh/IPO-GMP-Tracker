@@ -25,13 +25,10 @@ public class API_Helper {
     public TreeMap<String, String> headers;
     public TreeMap<String, String> formData; // --form | --data-urlencode
     public TreeMap<String, String> body; // --data-raw => JSON
-    public boolean readBodyFromString;
-    public String bodyString; // --data-raw => JSON
     public Object stringBody; // --data-raw => text (assuming)
     public JSONObject testData;
     private static RequestSpecification REQUEST_SPEC;
     private static Map<String, Function<String, Response>> REQUEST_METHODS;
-    public static String LOG_FILE;
 
 
     public API_Helper(JSONObject jsonTemplate) {
@@ -67,11 +64,6 @@ public class API_Helper {
         RestAssured.baseURI="https://api.restful-api.dev";
         REQUEST_SPEC = REQUEST_SPEC.headers(headers)
                 .baseUri(RestAssured.baseURI);
-        if (readBodyFromString) {
-            REQUEST_SPEC = REQUEST_SPEC.body(bodyString);
-        } else if (body != null && !body.isEmpty()) {
-            REQUEST_SPEC = REQUEST_SPEC.body(body);
-        }
             response = sendRequest(REQUEST_METHOD);
         saveResponseToFile(response);
         return response;
@@ -109,12 +101,5 @@ public class API_Helper {
         } catch (JSONException | NullPointerException e) {
         }
         return returnHash;
-    }
-
-
-    public void readBodyFromAsString(boolean readBodyFromString, String bodyString) {
-        this.readBodyFromString = readBodyFromString;
-        this.bodyString = bodyString;
-
     }
 }
