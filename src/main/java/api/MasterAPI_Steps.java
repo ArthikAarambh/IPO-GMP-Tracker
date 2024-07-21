@@ -15,7 +15,7 @@ public class MasterAPI_Steps  {
     }
 
     public static void updateAPIBodyVariables() {
-//       REQUEST_BODY = API_TEMPLATE.getJSONObject("body");
+      REQUEST_BODY = getJsonObjectIfPresent(API_TEMPLATE,"body");
         QUERY_PARAMS = getJsonObjectIfPresent(API_TEMPLATE, "queryParams");
     }
     private static JSONObject getJsonObjectIfPresent(JSONObject jsonObject, String keyParam) {

@@ -24,7 +24,8 @@ public class API_Helper {
     public TreeMap<String, String> queryParams;
     public TreeMap<String, String> headers;
     public TreeMap<String, String> formData; // --form | --data-urlencode
-    public TreeMap<String, String> body; // --data-raw => JSON
+   public TreeMap<String, String> body; // --data-raw => JSON
+//   public JSONObject body;
     public Object stringBody; // --data-raw => text (assuming)
     public JSONObject testData;
     private static RequestSpecification REQUEST_SPEC;
@@ -36,16 +37,17 @@ public class API_Helper {
 
         END_POINT = jsonTemplate.getString("end-point");
         REQUEST_METHOD = jsonTemplate.getString("request-method");
-
         this.testData = jsonTemplate;
         this.headers = setValue(testData.getJSONObject("headers"));
         this.pathParams = setValue(testData.optJSONObject("pathParams"));
         this.queryParams = setValue(testData.optJSONObject("queryParams"));
         this.formData = setValue(testData.optJSONObject("formData"));
         this.body = setValue(testData.optJSONObject("body"));
+//        this.body=testData.optJSONObject("body");
         if (this.body == null) {
             this.body = setValue(testData.optJSONObject("data"));
         }
+        System.out.println(this.body);
         this.stringBody = testData.optString("payloadString");
     }
 
