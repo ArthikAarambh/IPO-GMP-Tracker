@@ -40,7 +40,7 @@ public class TestConfig extends TestLogger {
     public static String RESULT_CSV_FILE = CSV_REPORTS_PATH + "/results.csv";
     public static final String ALLURE_REPORTS_PATH = TEST_REPORTS_PATH + "/allure";
     public static final String TEST_SCREENSHOTS_PATH = TestConfig.ALLURE_REPORTS_PATH + "/screenshots";
-    public static final String LOG_FILES_PATH = TEST_REPORTS_PATH + "/logFiles/" + APP;
+    public static final String LOG_FILES_PATH = TEST_REPORTS_PATH + "/logFiles/";
     public static String MASTER_LOG_FILE = LOG_FILES_PATH + "/" + "master-logs_1.txt";
     public static String TEST_LOG_FILE = MASTER_LOG_FILE;
     public static final String CUCUMBER_REPORTS = TEST_REPORTS_PATH + "/cucumber/";

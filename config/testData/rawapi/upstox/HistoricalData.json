@@ -1,14 +1,8 @@
 {
-  "end-point": "https://api.upstox.com/v2/historical-candle/NSE_EQ%7CINE245A01021/day/2024-07-20/2024-07-16",
-  "request-method": "POST",
+  "end-point": "objects",
+  "request-method": "GET",
   "headers": {
     "Content-Type": "application/json"
-  },
-  "body": {
-    "appName": {
-      "asi": "87e5a3q4",
-      "mnp": "100"
-    }
   },
   "response_data_to_save": {
   }

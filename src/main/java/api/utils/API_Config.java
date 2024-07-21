@@ -20,7 +20,6 @@ public class API_Config {
     public static String API_CONFIG_FILES_PATH;
     public static Response RESPONSE;
     public static final String ENVI_VARIABLES_JSON_FILE_NAME = "environment_variables.json";
-    public static final String PRODUCT_TEMPLATE = TestConfig.TEST_DATA_PATH + "/pla_ads/" + "products/new_product_template.json";
 
 
 

@@ -52,14 +52,14 @@ public class API_Helper {
 
         this.testData = jsonTemplate;
         this.headers = setValue(testData.getJSONObject("headers"));
-        this.pathParams = setValue(testData.optJSONObject("pathParams"));
-        this.queryParams = setValue(testData.optJSONObject("queryParams"));
-        this.formData = setValue(testData.optJSONObject("formData"));
+//        this.pathParams = setValue(testData.optJSONObject("pathParams"));
+//        this.queryParams = setValue(testData.optJSONObject("queryParams"));
+//        this.formData = setValue(testData.optJSONObject("formData"));
         this.body = setValue(testData.optJSONObject("body"));
         if (this.body == null) {
             this.body = setValue(testData.optJSONObject("data"));
         }
-        this.stringBody = testData.optString("payloadString");
+//        this.stringBody = testData.optString("payloadString");
     }
 
     private void prepareRequestSpecification() {
@@ -74,12 +74,13 @@ public class API_Helper {
 
     public Response publish() throws MethodNotSupportedException {
         Response response = null;
+        RestAssured.baseURI="https://api.restful-api.dev";
         REQUEST_SPEC = REQUEST_SPEC.headers(headers)
                 .baseUri(RestAssured.baseURI);
 
-        if (!testData.optBoolean("secure-data")) {
-            scenario_json_info("Final Request Body:", REQUEST_BODY.toString(4));
-        }
+//        if (!testData.optBoolean("secure-data")) {
+//            scenario_json_info("Final Request Body:", REQUEST_BODY.toString(4));
+//        }
 
         if (readBodyFromString) {
             REQUEST_SPEC = REQUEST_SPEC.body(bodyString);
@@ -87,45 +88,45 @@ public class API_Helper {
             REQUEST_SPEC = REQUEST_SPEC.body(body);
         }
 
-        try {
-            save_n_log_info("Request curl: \n", logCurl());
-            TestLogger.save_to_test_log(LOG_FILE, "\n >>>> Request curl: \n\n" + logCurl());
-
-            FileOutputStream fos = new FileOutputStream(LOG_FILE, true);
-            // Create a PrintStream to write the log to the file
-            PrintStream logPrintStream = new PrintStream(fos);
-
-//            REQUEST_SPEC = REQUEST_SPEC.filter(new RequestLoggingFilter(LogDetail.ALL, logPrintStream));
-
-            if (testData.optBoolean("secure-data")) {
-                REQUEST_SPEC = REQUEST_SPEC.when()
-                        .log().method()
-                        .log().headers()
-                        .log().cookies()
-                        .log().uri()
-                        .log().parameters();
-
-            } else {
-                REQUEST_SPEC = REQUEST_SPEC.when()
-                        .log()
-                        .all();
-            }
-
+//        try {
+////            save_n_log_info("Request curl: \n", logCurl());
+////            TestLogger.save_to_test_log(LOG_FILE, "\n >>>> Request curl: \n\n" + logCurl());
+//
+//            FileOutputStream fos = new FileOutputStream(LOG_FILE, true);
+//            // Create a PrintStream to write the log to the file
+//            PrintStream logPrintStream = new PrintStream(fos);
+//
+////            REQUEST_SPEC = REQUEST_SPEC.filter(new RequestLoggingFilter(LogDetail.ALL, logPrintStream));
+//
+//            if (testData.optBoolean("secure-data")) {
+//                REQUEST_SPEC = REQUEST_SPEC.when()
+//                        .log().method()
+//                        .log().headers()
+//                        .log().cookies()
+//                        .log().uri()
+//                        .log().parameters();
+//
+//            } else {
+//                REQUEST_SPEC = REQUEST_SPEC.when()
+//                        .log()
+//                        .all();
+//            }
+//
             response = sendRequest(REQUEST_METHOD);
-        } catch (MalformedURLException e) {
-            System.err.println("Error in Response: \n");
-            response.then().log().all();
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (response != null) {
-                info("======== Response Output ========");
-                response.then().log().all();
-                saveResponseToFile(response);
-                scenario_json_info("Response body:", response.asPrettyString());
-            }
-        }
+//        } catch (MalformedURLException e) {
+//            System.err.println("Error in Response: \n");
+//            response.then().log().all();
+//            throw new RuntimeException(e);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (response != null) {
+//                info("======== Response Output ========");
+//                response.then().log().all();
+//                saveResponseToFile(response);
+//                scenario_json_info("Response body:", response.asPrettyString());
+//            }
+//        }
         return response;
     }
 
@@ -152,32 +153,32 @@ public class API_Helper {
         return convertJSONObjectToSortedHash(values);
     }
 
-    public String logCurl() throws MalformedURLException {
-        StringJoiner curl = new StringJoiner(" \\\n");
-
-        String url = adjustFwdSlashesInURL();
-        url = replacePathParams(url, pathParams);
-        curl.add("curl --request " + REQUEST_METHOD + " '" + url + attachQueryParams(queryParams) + "'");
-
-        curl = constructCurlBodyFor("--header", ": ", headers, curl);
-
-        if (formData != null && formData.size() > 0) {
-            String option = curl.toString().contains("application/x-www-form-urlencoded") ? "--data-urlencode" : "--form";
-            return constructCurlBodyFor(option, "=", formData, curl).toString();
-        }
-
-        if (!testData.optBoolean("secure-data")) {
-            if (readBodyFromString) {
-                curl.add("--data-raw '" + (bodyString) + "'");
-            } else if (body != null && body.size() > 0) {
-                curl.add("--data-raw '" + (new JSONObject(body).toString()) + "'");
-            } else if (stringBody != null) {
-                curl.add("--data-raw '" + stringBody + "'");
-            }
-        }
-
-        return curl.toString();
-    }
+//    public String logCurl() throws MalformedURLException {
+//        StringJoiner curl = new StringJoiner(" \\\n");
+//
+//        String url = adjustFwdSlashesInURL();
+//        url = replacePathParams(url, pathParams);
+//        curl.add("curl --request " + REQUEST_METHOD + " '" + url + attachQueryParams(queryParams) + "'");
+//
+//        curl = constructCurlBodyFor("--header", ": ", headers, curl);
+//
+//        if (formData != null && formData.size() > 0) {
+//            String option = curl.toString().contains("application/x-www-form-urlencoded") ? "--data-urlencode" : "--form";
+//            return constructCurlBodyFor(option, "=", formData, curl).toString();
+//        }
+//
+//        if (!testData.optBoolean("secure-data")) {
+//            if (readBodyFromString) {
+//                curl.add("--data-raw '" + (bodyString) + "'");
+//            } else if (body != null && body.size() > 0) {
+//                curl.add("--data-raw '" + (new JSONObject(body).toString()) + "'");
+//            } else if (stringBody != null) {
+//                curl.add("--data-raw '" + stringBody + "'");
+//            }
+//        }
+//
+//        return curl.toString();
+//    }
 
     private String adjustFwdSlashesInURL() throws MalformedURLException {
         if (!RestAssured.baseURI.endsWith("/") && !END_POINT.startsWith("/")) {
