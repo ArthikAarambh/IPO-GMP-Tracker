@@ -7,7 +7,6 @@ import org.json.JSONObject;
 import utils.JsonReader;
 import static api.utils.API_Config.*;
 public class MasterAPI_Steps  {
-    private static boolean IS_DATA_CRC_ENCRYPTED=false;
     public static void an_api_template_for_request(String apiFileName) {
         API_TEMPLATE_PATH = (apiFileName).replaceAll("\\.json", "") + ".json";
         API_TEMPLATE = JsonReader.getJsonData(API_TEMPLATE_PATH);
@@ -34,8 +33,6 @@ public class MasterAPI_Steps  {
 
         } catch (MethodNotSupportedException e) {
             throw new RuntimeException(e);
-        } finally {
-            IS_DATA_CRC_ENCRYPTED = false;
         }
         return RESPONSE;
     }
