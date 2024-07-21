@@ -5,12 +5,6 @@ import java.nio.file.*;
 public class ProjectFileUtilities {
 
     private static String OUTPUT_FILE="test-report/master.txt";
-
-    private ProjectFileUtilities() {
-        throw new UnsupportedOperationException("Initialisation of the class not allowed");
-
-    }
-
     public static String writeLogsToFile(String logMsg) {
         writeLogsToFile(OUTPUT_FILE, logMsg);
         return logMsg;

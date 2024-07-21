@@ -10,11 +10,8 @@ import org.apache.http.MethodNotSupportedException;
 import org.json.JSONException;
 import org.json.JSONObject;
 import utils.TestLogger;
-
 import java.io.*;
-import java.net.MalformedURLException;
 import java.util.Map;
-import java.util.StringJoiner;
 import java.util.TreeMap;
 import java.util.function.Function;
 
@@ -38,8 +35,6 @@ public class API_Helper {
 
 
     public API_Helper(JSONObject jsonTemplate) {
-//       LOG_FILE = logFile;
-
         prepareRequestSpecification();
 
         END_POINT = jsonTemplate.getString("end-point");
@@ -72,11 +67,6 @@ public class API_Helper {
         RestAssured.baseURI="https://api.restful-api.dev";
         REQUEST_SPEC = REQUEST_SPEC.headers(headers)
                 .baseUri(RestAssured.baseURI);
-
-//        if (!testData.optBoolean("secure-data")) {
-//            scenario_json_info("Final Request Body:", REQUEST_BODY.toString(4));
-//        }
-
         if (readBodyFromString) {
             REQUEST_SPEC = REQUEST_SPEC.body(bodyString);
         } else if (body != null && !body.isEmpty()) {
