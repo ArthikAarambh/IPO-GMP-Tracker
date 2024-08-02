@@ -1,5 +1,5 @@
 {
-  "end-point": "objects",
+  "end-point": "",
   "request-method": "GET",
   "headers": {
     "Content-Type": "application/json"
