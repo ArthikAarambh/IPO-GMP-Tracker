@@ -34,7 +34,7 @@ public class API_Helper {
 
     public API_Helper(JSONObject jsonTemplate) {
         prepareRequestSpecification();
-
+        RestAssured.baseURI=jsonTemplate.getString("base-url");
         END_POINT = jsonTemplate.getString("end-point");
         REQUEST_METHOD = jsonTemplate.getString("request-method");
         this.testData = jsonTemplate;
@@ -63,7 +63,7 @@ public class API_Helper {
 
     public Response publish() throws MethodNotSupportedException {
         Response response = null;
-        RestAssured.baseURI="https://api.upstox.com/v2/historical-candle/NSE_EQ%7CINE245A01021/day/2024-08-02/2024-08-01";
+//        RestAssured.baseURI= "direct base url";
         REQUEST_SPEC = REQUEST_SPEC.headers(headers)
                 .baseUri(RestAssured.baseURI);
             response = sendRequest(REQUEST_METHOD);
