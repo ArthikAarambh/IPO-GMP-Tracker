@@ -202,6 +202,11 @@
             <type>maven-plugin</type>
         </dependency>
         <!-- Add other dependencies as needed for your project -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.16.1</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>

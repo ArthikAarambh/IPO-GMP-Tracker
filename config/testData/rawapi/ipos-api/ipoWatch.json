@@ -1,0 +1,10 @@
+{
+  "base-url": "https://ipowatch.in/ipo-grey-market-premium-latest-ipo-gmp/",
+  "end-point": "",
+  "request-method": "GET",
+  "headers": {
+    "Content-Type": "text/html; charset=UTF-8"
+  },
+  "response_data_to_save": {
+  }
+}
