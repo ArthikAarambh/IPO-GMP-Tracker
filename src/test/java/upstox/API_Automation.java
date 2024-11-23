@@ -1,4 +1,4 @@
-package ipo;
+package upstox;
 
 import api.MasterAPI_Steps;
 import api.utils.API_Config;

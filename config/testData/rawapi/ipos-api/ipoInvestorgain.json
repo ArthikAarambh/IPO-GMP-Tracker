@@ -1,0 +1,10 @@
+{
+  "base-url": "https://www.investorgain.com/report/live-ipo-gmp/331/",
+  "end-point": "",
+  "request-method": "GET",
+  "headers": {
+    "Content-Type": "text/html; charset=UTF-8"
+  },
+  "response_data_to_save": {
+  }
+}

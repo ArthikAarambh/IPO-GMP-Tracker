@@ -1,0 +1,10 @@
+{
+  "base-url": "https://www.investorgain.com/report/watch-live-ipo-event-calendar/554/",
+  "end-point": "",
+  "request-method": "GET",
+  "headers": {
+    "Content-Type": "text/html; charset=UTF-8"
+  },
+  "response_data_to_save": {
+  }
+}

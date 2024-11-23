@@ -4,7 +4,7 @@
     </listeners>
     <test name="Upstox Historical Data">
         <classes>
-            <class name="ipo.API_Automation"/>
+            <class name="upstox.API_Automation"/>
         </classes>
     </test>
 </suite>

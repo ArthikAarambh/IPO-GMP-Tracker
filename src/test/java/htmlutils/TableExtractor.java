@@ -1,4 +1,4 @@
-package gmp;
+package htmlutils;
 
 import io.restassured.response.Response;
 import org.jsoup.Jsoup;
