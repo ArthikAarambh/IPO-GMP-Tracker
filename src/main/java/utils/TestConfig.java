@@ -6,5 +6,6 @@ public class TestConfig {
     // Config files and child paths
     public static final String CONFIG_FILES_PATH = PROJECT_BASE_PATH + "/config";
     private static final String SYSTEM_PROPERTIES = CONFIG_FILES_PATH + "/system.properties";
+    public static String TEST_REPORT_PATH =PROJECT_BASE_PATH+"/test-report";
 
 }
