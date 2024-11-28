@@ -12,7 +12,7 @@ import java.io.IOException;
 import static utils.TestConfig.TEST_REPORT_PATH;
 
 public class TableExtractor {
-    public static void ext(Response htmlResponse) {
+    public static void ext(Response htmlResponse,String csvName) {
 
         // Parse the HTML
         Document doc = Jsoup.parse(htmlResponse.getBody().asString());
@@ -20,7 +20,7 @@ public class TableExtractor {
         // Select the table
         // Select all tables
         Elements tables = doc.select("table");
-        String fileName = TEST_REPORT_PATH+"/table_" + ".csv";
+        String fileName = TEST_REPORT_PATH+"/table_"+csvName+".csv";
 
         if (!tables.isEmpty()) {
             try (FileWriter writer = new FileWriter(fileName)) {

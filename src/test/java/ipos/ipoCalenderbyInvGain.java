@@ -15,7 +15,7 @@ public class ipoCalenderbyInvGain {
         MasterAPI_Steps.publish_the_final_api_call_validation();
         Response response = API_Config.RESPONSE;
         DELIVERY_API_REPONSE = response;
-        ext((DELIVERY_API_REPONSE));
+        ext(DELIVERY_API_REPONSE,"CalenderInvGain");
 //        System.out.println(DELIVERY_API_REPONSE.getBody().asPrettyString());
     }
     public static void main(String[] args) {
