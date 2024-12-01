@@ -5,7 +5,7 @@ import api.utils.API_Config;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import static htmlutils.TableExtractor.ext;
+import static utils.html.TableExtractor.ext;
 
 public class ipoGMPs {
     private static Response DELIVERY_API_REPONSE;

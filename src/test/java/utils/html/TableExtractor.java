@@ -1,4 +1,4 @@
-package htmlutils;
+package utils.html;
 
 import io.restassured.response.Response;
 import org.jsoup.Jsoup;
