@@ -5,6 +5,7 @@ import api.utils.API_Config;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
+import static utils.csv.CsvReader.printCSVData;
 import static utils.html.TableExtractor.ext;
 
 public class ipoGMPs {
@@ -36,12 +37,16 @@ public class ipoGMPs {
     }
     public static void main(String[] args) {
 
+        getGMPInvestorgain();
+        getGMPipoPremium();
+        getGMPipoWatch();
         try {
-            getGMPInvestorgain();
-            getGMPipoPremium();
-            getGMPipoWatch();
-        } catch (Exception e) {
-            e.printStackTrace();
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
+        printCSVData("table_InvestorGain");
+        printCSVData("table_IpoPremium");
+        printCSVData("table_IpoWatch");
     }
 }

@@ -27,14 +27,14 @@ public class TableExtractor {
                 int tableIndex = 1;
                 for (Element table : tables) {
                     writeTableToCSV(table, writer);
-
-                    // Add a blank line and message after each table
-                    writer.append("\n");
-                    writer.append(">>>Table ").append(String.valueOf(tableIndex)).append(" data ended<<<\n");
-                    writer.append("\n");
-
-                    System.out.println("Table " + tableIndex + " appended to CSV.");
-                    tableIndex++;
+                    break;
+        //As of now will work on single csv.
+//                    writer.append("\n");
+//                    writer.append(">>>Table ").append(String.valueOf(tableIndex)).append(" data ended<<<\n");
+//                    writer.append("\n");
+//
+//                    System.out.println("Table " + tableIndex + " appended to CSV.");
+//                    tableIndex++;
                 }
                 System.out.println("All tables appended to " + fileName);
             } catch (IOException e) {

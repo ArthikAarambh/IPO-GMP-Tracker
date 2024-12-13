@@ -18,8 +18,8 @@ public class ProjectFileUtilities {
             createFolderIfNotExists(String.valueOf(path.getParent()));
             createFileIfNotExists(filePath);
 
-            // Append text to the file
-            writer = new FileWriter(filePath, true);
+            // Append text to the file as per need currently false
+            writer = new FileWriter(filePath);
             writer.append(logMsg);
             writer.append("\n");
             writer.flush();
