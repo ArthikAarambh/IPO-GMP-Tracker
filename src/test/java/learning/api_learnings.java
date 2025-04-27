@@ -1,14 +1,11 @@
-package ipos;
+package learning;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.function.Function;
 
 public class api_learnings {

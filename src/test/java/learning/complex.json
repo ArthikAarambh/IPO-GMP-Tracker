@@ -1,0 +1,91 @@
+{
+  "user": {
+    "id": "12",
+    "profile": {
+      "name": {
+        "first": "John",
+        "middle": null,
+        "last": "Doe"
+      },
+      "dob": "1990-05-15",
+      "contacts": [
+        {
+          "type": "email",
+          "value": "john.doe@example.com",
+          "verified": true
+        },
+        {
+          "type": "phone",
+          "value": "+1234567890",
+          "verified": false
+        }
+      ],
+      "address": {
+        "current": {
+          "street": "123 Main St",
+          "city": "Metropolis",
+          "zip": "12345",
+          "country": "USA"
+        },
+        "permanent": {
+          "street": "456 Old St",
+          "city": "Smallville",
+          "zip": "54321",
+          "country": "USA"
+        }
+      }
+    },
+    "accountStatus": "active",
+    "preferences": {
+      "newsletterSubscribed": true,
+      "language": "en-US",
+      "theme": {
+        "mode": "dark",
+        "colors": {
+          "primary": "#000000",
+          "secondary": "#FFFFFF"
+        }
+      }
+    }
+  },
+  "orders": [
+    {
+      "orderId": "A001",
+      "date": "2024-11-10T14:48:00.000Z",
+      "items": [
+        {
+          "productId": "P1001",
+          "name": "Laptop",
+          "quantity": 1,
+          "price": 1200.99,
+          "discount": null
+        },
+        {
+          "productId": "P1002",
+          "name": "Mouse",
+          "quantity": 2,
+          "price": 25.5,
+          "discount": 5
+        }
+      ],
+      "totalAmount": 1250.99,
+      "shipping": {
+        "method": "Express",
+        "trackingNumber": "TRK123456",
+        "estimatedDelivery": "2024-11-15"
+      }
+    },
+    {
+      "orderId": "A002",
+      "date": "2024-12-01T10:15:00.000Z",
+      "items": [],
+      "totalAmount": 0,
+      "shipping": null
+    }
+  ],
+  "metadata": {
+    "createdAt": "2024-04-27T12:00:00.000Z",
+    "updatedAt": "2025-04-27T12:00:00.000Z",
+    "tags": ["premium", "verified", "beta-tester"]
+  }
+}
