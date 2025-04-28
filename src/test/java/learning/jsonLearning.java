@@ -4,11 +4,15 @@ import org.json.JSONObject;
 import org.testng.asserts.SoftAssert;
 import utils.JsonReader;
 
+import java.sql.SQLOutput;
+import java.util.*;
+
 public class jsonLearning {
 
     private static void getJson(){
         String path="src/test/java/learning/complex.json";
         SoftAssert softAssert = new SoftAssert();
+        Map<String,String>headers = new HashMap<>();
         String jsonBody ="{\"name\": \"morpheus\",\"job\": \"leader\"}";
         JSONObject stringJson = new JSONObject(jsonBody);
         softAssert.assertEquals(stringJson.getString("name"),"morph","Data mismatch");
@@ -39,6 +43,16 @@ public class jsonLearning {
         System.out.println(id+" "+firstName+" "+email+" "+phone);
         softAssert.assertEquals(id,"12","data mismatch");
 //        System.out.println(jsonObject.toString(4));
+
+
+
+        //to put JSON body into HashMap;
+        for(String key : stringJson.keySet()){
+            headers.put(key,stringJson.getString(key));
+        }
+        for(Map.Entry<String,String>entry : headers.entrySet()){
+            System.out.println(entry.getKey()+" "+entry.getValue());
+        }
         softAssert.assertAll();
     }
 
